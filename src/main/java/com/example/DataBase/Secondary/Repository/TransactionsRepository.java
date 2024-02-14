@@ -1,4 +1,4 @@
-package com.example.DataBase.Secondary.Reository;
+package com.example.DataBase.Secondary.Repository;
 
 import com.example.DataBase.Secondary.Model.Transactions;
 import org.springframework.data.jpa.repository.JpaRepository;

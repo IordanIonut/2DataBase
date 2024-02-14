@@ -4,27 +4,24 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
-@Builder
 @Data
-@Table(name = "transactions")
+@Builder
+@Table(name="financialReports")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class Transactions {
+public class FinancialReports {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_transaction;
+    private Long id_report;
     @NotNull(message = "Type")
     private String type;
-    @NotNull(message = "Amount")
-    private Double amount;
     @NotNull(message = "Date")
-    private LocalDateTime date;
+    private LocalDate date;
     @NotNull(message = "Details")
     private String details;
-
 }

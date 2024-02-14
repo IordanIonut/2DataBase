@@ -7,21 +7,21 @@ import lombok.*;
 @Entity
 @Data
 @Builder
-@Table(name = "products")
+@Table(name = "orders")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class Products {
+public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_product;
-    @NotNull(message = "Name")
-    private String name;
-    @NotNull(message = "Description")
-    private String description;
+    private Long id_order;
+    @ManyToOne
+    private Clients id_client;
     @NotNull(message = "Price")
     private Double price;
-    @NotNull(message = "Stock")
-    private Integer stock;
+    @NotNull(message = "Quantity")
+    private Integer quantity;
+    @NotNull(message = "Total Price")
+    private Double total_price;
 }
