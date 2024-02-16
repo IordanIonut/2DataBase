@@ -46,19 +46,19 @@ public class ProductsController {
     }
 
     @GetMapping("/id")
-    public ResponseEntity<List<Products>> getByIdProducts(@RequestParam Long id_product) {
+    public ResponseEntity<List<Products>> getByIdProducts(@RequestParam("id") Long id_product) {
         return service.getByIdProducts(id_product).map(e -> ResponseEntity.ok(Collections.singletonList(e)))
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/id")
-    public ResponseEntity<HttpStatus> deleteProducts(@RequestParam Long id_product) {
+    public ResponseEntity<HttpStatus> deleteProducts(@RequestParam("id") Long id_product) {
         service.deleteProducts(id_product);
         return new ResponseEntity<HttpStatus>(HttpStatus.ACCEPTED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Products> updateProducts(@PathVariable Long id_product, @RequestBody Products product) {
+    public ResponseEntity<Products> updateProducts(@PathVariable("id") Long id_product, @RequestBody Products product) {
         Products p = service.updateProduct(id_product, product);
         return p != null ? ResponseEntity.ok(p) : ResponseEntity.notFound().build();
     }

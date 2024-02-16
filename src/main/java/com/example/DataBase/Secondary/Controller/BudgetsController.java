@@ -45,19 +45,19 @@ public class BudgetsController {
     }
 
     @GetMapping("/id")
-    public ResponseEntity<List<Budgets>> getByIdBudgets(@RequestParam Long id_review){
+    public ResponseEntity<List<Budgets>> getByIdBudgets(@RequestParam("id") Long id_review){
         return  service.getByIdBudgets(id_review).map(e -> ResponseEntity.ok(Collections.singletonList(e)))
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/id")
-    public ResponseEntity<HttpStatus> deleteBudgets(@RequestParam Long id_budget) {
+    public ResponseEntity<HttpStatus> deleteBudgets(@RequestParam("id") Long id_budget) {
         service.deleteBudgets(id_budget);
         return new ResponseEntity<HttpStatus>(HttpStatus.ACCEPTED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Budgets> updateBudgets(@PathVariable Long id, @RequestBody Budgets budget){
+    public ResponseEntity<Budgets> updateBudgets(@PathVariable("id") Long id, @RequestBody Budgets budget){
         Budgets b = service.updateBudgets(id, budget);
         return b != null ? ResponseEntity.ok(b) : ResponseEntity.notFound().build();
     }

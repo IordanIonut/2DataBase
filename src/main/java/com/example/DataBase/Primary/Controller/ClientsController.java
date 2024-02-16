@@ -45,19 +45,19 @@ public class ClientsController {
     }
 
     @GetMapping("/id")
-    public ResponseEntity<List<Clients>> getByIdClients(@RequestParam Long id_client) {
+    public ResponseEntity<List<Clients>> getByIdClients(@RequestParam("id") Long id_client) {
         return service.getByIdClients(id_client).map(e -> ResponseEntity.ok(Collections.singletonList(e)))
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/id")
-    public ResponseEntity<HttpStatus> deleteClients(@RequestParam Long id_client) {
+    public ResponseEntity<HttpStatus> deleteClients(@RequestParam("id") Long id_client) {
         service.deleteClients(id_client);
         return new ResponseEntity<HttpStatus>(HttpStatus.ACCEPTED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Clients> updateClients(@PathVariable Long id_client, @RequestBody Clients client) {
+    public ResponseEntity<Clients> updateClients(@PathVariable("id") Long id_client, @RequestBody Clients client) {
         Clients c = service.updateClients(id_client, client);
         return c != null ? ResponseEntity.ok(c) : ResponseEntity.notFound().build();
     }

@@ -44,19 +44,19 @@ public class TransactionsController {
     }
 
     @GetMapping("/id")
-    public ResponseEntity<List<Transactions>> getByIdTransactions(@RequestParam Long id_transactions){
+    public ResponseEntity<List<Transactions>> getByIdTransactions(@RequestParam("id") Long id_transactions){
         return service.getByIdTransactions(id_transactions).map(e -> ResponseEntity.ok(Collections.singletonList(e)))
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/id")
-    public ResponseEntity<HttpStatus> deleteTransactions(@RequestParam Long id_transactions){
+    public ResponseEntity<HttpStatus> deleteTransactions(@RequestParam("id") Long id_transactions){
         service.deleteTransactions(id_transactions);
         return new ResponseEntity<HttpStatus>(HttpStatus.ACCEPTED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Transactions> updateTransactions(@PathVariable Long id_transactions, @RequestBody Transactions transaction){
+    public ResponseEntity<Transactions> updateTransactions(@PathVariable("id") Long id_transactions, @RequestBody Transactions transaction){
         Transactions t = service.updateTransactions(id_transactions, transaction);
         return t != null ? ResponseEntity.ok(t) : ResponseEntity.notFound().build();
     }

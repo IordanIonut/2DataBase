@@ -45,19 +45,19 @@ public class OrdersController {
     }
 
     @GetMapping("/id")
-    public ResponseEntity<List<Orders>> getByIdOrders(@RequestParam Long id_order) {
+    public ResponseEntity<List<Orders>> getByIdOrders(@RequestParam("id") Long id_order) {
         return service.getByIdOrders(id_order).map(e -> ResponseEntity.ok(Collections.singletonList(e)))
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/id")
-    public ResponseEntity<HttpStatus> deleteOrders(@RequestParam Long id_order) {
+    public ResponseEntity<HttpStatus> deleteOrders(@RequestParam("id") Long id_order) {
         service.deleteOrders(id_order);
-        return new ResponseEntity<HttpStatus>(HttpStatus.OK);
+        return new ResponseEntity<HttpStatus>(HttpStatus.ACCEPTED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Orders> updateOrders(@PathVariable Long id, @RequestBody Orders order) {
+    public ResponseEntity<Orders> updateOrders(@PathVariable("id") Long id, @RequestBody Orders order) {
         Orders o = service.updateOrders(id, order);
         return o != null ? ResponseEntity.ok(o) : ResponseEntity.notFound().build();
     }

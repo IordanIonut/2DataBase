@@ -44,19 +44,19 @@ public class InvoicesController {
     }
 
     @GetMapping("/id")
-    public ResponseEntity<List<Invoices>> getInvoicesById(@RequestParam Long id_invoice){
+    public ResponseEntity<List<Invoices>> getInvoicesById(@RequestParam("id") Long id_invoice){
         return service.getByIdInvoices(id_invoice).map(e -> ResponseEntity.ok(Collections.singletonList(e)))
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/id")
-    public ResponseEntity<HttpStatus> deleteInvoices(@RequestParam Long id_invoices){
+    public ResponseEntity<HttpStatus> deleteInvoices(@RequestParam("id") Long id_invoices){
         service.deleteInvoices(id_invoices);
         return new ResponseEntity<HttpStatus>(HttpStatus.ACCEPTED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Invoices> updateInvoices(@PathVariable Long id_invoices, @RequestBody Invoices invoice){
+    public ResponseEntity<Invoices> updateInvoices(@PathVariable("id") Long id_invoices, @RequestBody Invoices invoice){
         Invoices i = service.updateInvoices(id_invoices, invoice);
         return i != null ? ResponseEntity.ok(i) : ResponseEntity.notFound().build();
     }

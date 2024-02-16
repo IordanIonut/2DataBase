@@ -44,19 +44,19 @@ public class ReviewsController {
     }
 
     @GetMapping("/id")
-    public ResponseEntity<List<Reviews>> getByIdReviews(@RequestParam Long id_review){
+    public ResponseEntity<List<Reviews>> getByIdReviews(@RequestParam("id") Long id_review){
         return  service.getByIdReviews(id_review).map(e -> ResponseEntity.ok(Collections.singletonList(e)))
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/id")
-    public ResponseEntity<HttpStatus> deleteReviews(@RequestParam Long id_review) {
+    public ResponseEntity<HttpStatus> deleteReviews(@RequestParam("id") Long id_review) {
         service.deleteReviews(id_review);
         return new ResponseEntity<HttpStatus>(HttpStatus.ACCEPTED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Reviews> updateReviews(@PathVariable Long id, @RequestBody Reviews review){
+    public ResponseEntity<Reviews> updateReviews(@PathVariable("id") Long id, @RequestBody Reviews review){
         Reviews r = service.updateReviews(id, review);
         return r != null ? ResponseEntity.ok(r) : ResponseEntity.notFound().build();
     }

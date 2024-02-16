@@ -1,7 +1,5 @@
 package com.example.DataBase.Config;
 
-import com.example.DataBase.Primary.Model.Products;
-import com.example.DataBase.Secondary.Model.Transactions;
 import com.zaxxer.hikari.HikariDataSource;
 import jakarta.persistence.EntityManagerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -23,6 +21,7 @@ import javax.sql.DataSource;
 @EnableJpaRepositories(entityManagerFactoryRef = "financialEntityManagerFactory", transactionManagerRef = "financialTransactionManager",
         basePackages = {"com.example.DataBase.Secondary.Repository"})
 public class SecondaryDBConfig {
+    
     @Bean(name = "financialDataSourceProperties")
     @ConfigurationProperties("spring.datasource.financial")
     public DataSourceProperties financialDataSourceProperties() {

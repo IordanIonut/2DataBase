@@ -45,19 +45,19 @@ public class FinancialReportsController {
     }
 
     @GetMapping("/id")
-    public ResponseEntity<List<FinancialReports>> getByIdFinancialReports(@RequestParam Long id_financialReport){
+    public ResponseEntity<List<FinancialReports>> getByIdFinancialReports(@RequestParam("id") Long id_financialReport){
         return service.getByIdFianancialReports(id_financialReport).map(e -> ResponseEntity.ok(Collections.singletonList(e)))
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/id")
-    public ResponseEntity<HttpStatus> deleteFinancialReports(@RequestParam Long id_FinancialReport){
+    public ResponseEntity<HttpStatus> deleteFinancialReports(@RequestParam("id") Long id_FinancialReport){
         service.deleteFinancialReports(id_FinancialReport);
         return new ResponseEntity<HttpStatus>(HttpStatus.ACCEPTED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<FinancialReports> updateFinancialReports(@PathVariable Long id_FinancialReport, @RequestBody FinancialReports financialReport){
+    public ResponseEntity<FinancialReports> updateFinancialReports(@PathVariable("id") Long id_FinancialReport, @RequestBody FinancialReports financialReport){
         FinancialReports f = service.updateFinancialReports(id_FinancialReport, financialReport);
         return f != null ? ResponseEntity.ok(f) : ResponseEntity.notFound().build();
     }
