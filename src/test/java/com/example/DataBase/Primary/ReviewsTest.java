@@ -64,7 +64,7 @@ public class ReviewsTest {
     }
 
     @Test
-    public void testCreateReviews() throws Exception {
+    public void testSaveReviews() throws Exception {
         mvc.perform(post("/api/reviews/add")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(reviews.get(0))))

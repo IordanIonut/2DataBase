@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -21,7 +22,7 @@ public class FinancialReports {
     @NotNull(message = "Type")
     private String type;
     @NotNull(message = "Date")
-    private LocalDate date;
+    private LocalDateTime date;
     @NotNull(message = "Details")
     private String details;
 }
